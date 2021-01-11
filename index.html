@@ -17,12 +17,41 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="background-color:mediumseagreen; margin-top: 30px;">
+                <h1>EWB-ASU Newsletter Signup</h1>
                 <form id="form">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="nameUserInput" placeholder="name">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emailUserInput" placeholder="email" required>
+                        </br>
+                        <label for="team">Team (optional)</label>
+                        </br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Shonto Solar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Shonto Irrigation</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="option3">
+                            <label class="form-check-label" for="inlineRadio3">International - Kenya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                                value="option3">
+                            <label class="form-check-label" for="inlineRadio4">Navajo Mountain Bike</label>
+                        </div>
+                        </br>
+                        </br>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
                     </div>
                 </form>
             </div>
@@ -55,10 +84,10 @@
             const form = $("#form");
             const nameUserInput = $("#nameUserInput");
 
-            const getnames = ()=>{
-                fetch('/getnames',{method: "get"}).then((response)=>{
+            const getnames = () => {
+                fetch('/getnames', { method: "get" }).then((response) => {
                     return response.json();
-                }).then((data)=>{
+                }).then((data) => {
                     console.log(data);
                     displaynames(data);
                 });
@@ -70,18 +99,18 @@
                 nameUserInput.val('');
             }
 
-            const editname = (name, nameID, editID)=>{
+            const editname = (name, nameID, editID) => {
                 let editBtn = $(`${editID}`);
-                editBtn.click(()=>{
-                    fetch(`/${name._id}`,{
+                editBtn.click(() => {
+                    fetch(`/${name._id}`, {
                         method: "put",
                         headers: {
-                            "Content-Type" : "application/json; charset=utf-8"
+                            "Content-Type": "application/json; charset=utf-8"
                         },
-                        body: JSON.stringify({name: nameUserInput.val()})
-                    }).then((response)=>{
+                        body: JSON.stringify({ name: nameUserInput.val() })
+                    }).then((response) => {
                         return response.json();
-                    }).then((data)=>{
+                    }).then((data) => {
                         if (data.ok == 1) {
                             let nameIndex = $(`#${nameID}`);
                             nameIndex.html(data.value.name);
@@ -91,14 +120,14 @@
                 })
             }
 
-            const deletename = (name, listItemID, deleteID)=>{
+            const deletename = (name, listItemID, deleteID) => {
                 let deleteBtn = $(`#${deleteID}`);
-                deleteBtn.click(()=>{
-                    fetch(`/${name._id}`,{
+                deleteBtn.click(() => {
+                    fetch(`/${name._id}`, {
                         method: "delete"
-                    }).then((response)=>{
+                    }).then((response) => {
                         return response.json();
-                    }).then((data)=>{
+                    }).then((data) => {
                         if (data.ok == 1) {
                             $(`#${listItemID}`).remove();
                         }
@@ -128,8 +157,8 @@
                     </li>`;
             }
 
-            const displaynames = (data)=>{
-                data.forEach((name)=>{
+            const displaynames = (data) => {
+                data.forEach((name) => {
                     let ids = buildIDS(name);
                     display.append(buildTemplate(name, ids));
                     editname(name, ids.nameID, ids.editID);
@@ -137,17 +166,17 @@
                 })
             }
 
-            form.submit((e)=>{
+            form.submit((e) => {
                 e.preventDefault();
-                fetch('/',{
+                fetch('/', {
                     method: 'post',
-                    body: JSON.stringify({name:nameUserInput.val()}),
-                    headers : {
-                        "Content-Type" : "application/json; charset=utf-8"
+                    body: JSON.stringify({ name: nameUserInput.val() }),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
                     }
-                }).then((response)=>{
+                }).then((response) => {
                     return response.json();
-                }).then((data)=>{
+                }).then((data) => {
                     if (data.result.ok == 1 && data.result.n == 1) {
                         let ids = buildIDS(data.document);
                         display.append(buildTemplate(data.document, ids));
