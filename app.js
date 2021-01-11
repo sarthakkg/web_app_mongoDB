@@ -11,7 +11,7 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/getTodos', (req, res)=>{
+app.get('/getnames', (req, res)=>{
     db.getDB().collection(collection).find({}).toArray((err, documents)=>{
         if(err)
             console.log(err);
@@ -24,10 +24,10 @@ app.get('/getTodos', (req, res)=>{
 
 // update
 app.put('/:id', (req, res)=>{
-    const todoID = req.params.id;
+    const nameID = req.params.id;
     const userInput = req.body;
 
-    db.getDB().collection(collection).findOneAndUpdate({_id: db.getPrimaryKey(todoID)}, {$set: {name: userInput.todo}}, {returnOriginal: false},(err,result)=>{
+    db.getDB().collection(collection).findOneAndUpdate({_id: db.getPrimaryKey(nameID)}, {$set: {name: userInput.name}}, {returnOriginal: false},(err,result)=>{
         if (err)
             console.log(err);
         else {
@@ -50,9 +50,9 @@ app.post('/', (req,res)=>{
 
 // delete
 app.delete('/:id',(req,res)=>{
-    const todoID = req.params.id;
+    const nameID = req.params.id;
 
-    db.getDB().collection(collection).findOneAndDelete({_id: db.getPrimaryKey(todoID)},(err, result)=>{
+    db.getDB().collection(collection).findOneAndDelete({_id: db.getPrimaryKey(nameID)},(err, result)=>{
         if (err)
             console.log(err);
         else

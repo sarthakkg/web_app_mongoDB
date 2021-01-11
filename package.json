@@ -1,5 +1,5 @@
 {
-  "name": "CRUD_Mongo",
+  "name": "crud_mongo",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
