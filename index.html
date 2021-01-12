@@ -30,23 +30,23 @@
                         <label for="team">Team (optional)</label>
                         </br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="solar"
                                 value="option1">
                             <label class="form-check-label" for="inlineRadio1">Shonto Solar</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="irrigation"
                                 value="option2">
                             <label class="form-check-label" for="inlineRadio2">Shonto Irrigation</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="kenya"
                                 value="option3">
                             <label class="form-check-label" for="inlineRadio3">International - Kenya</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                                value="option3">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="mountainBike"
+                                value="option4">
                             <label class="form-check-label" for="inlineRadio4">Navajo Mountain Bike</label>
                         </div>
                         </br>
@@ -55,6 +55,9 @@
                     </div>
                 </form>
             </div>
+            <h1 style="visibility: hidden; color:blue" id="completed">
+                Thanks for signing up!
+            </h1>
             <div class="col-lg-2"></div>
         </div>
     </div>
@@ -76,6 +79,7 @@
             const form = $("#form");
             const nameUserInput = $("#nameUserInput");
             const emailUserInput = $("#emailUserInput");
+            let teamUserSelect = null;
 
             const resetNameInput = () => {
                 nameUserInput.val('');
@@ -87,9 +91,19 @@
 
             form.submit((e) => {
                 e.preventDefault();
+
+                if ($("#solar").is(':checked'))
+                    teamUserSelect = "Shonto Solar"
+                else if ($("#irrigation").is(':checked'))
+                    teamUserSelect = "Shonto Irrigation"
+                else if ($("#kenya").is(':checked'))
+                    teamUserSelect = "International - Kenya"
+                else if ($("#mountainBike").is(':checked'))
+                    teamUserSelect = "Navajo Mountain Bike"
+                    
                 fetch('/', {
                     method: 'post',
-                    body: JSON.stringify({name: nameUserInput.val(), email: emailUserInput.val(), date_subscribed: new Date(), subscribed: true}),
+                    body: JSON.stringify({ name: nameUserInput.val(), email: emailUserInput.val(), team: teamUserSelect, date_subscribed: new Date(), subscribed: true }),
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     }
@@ -98,6 +112,12 @@
                 }).then((data) => {
                     resetNameInput();
                     resetEmailInput();
+                    document.getElementById('solar').checked = false
+                    document.getElementById('irrigation').checked = false
+                    document.getElementById('kenya').checked = false
+                    document.getElementById('mountainBike').checked = false
+                    // show completion text
+                    document.getElementById("completed").style.visibility = "visible";
                 });
             })
         });
