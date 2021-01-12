@@ -19,8 +19,10 @@ connection = Connect.get_connection()
 db = connection.ewb_asu
 collection = db.members
 for member in collection.find():
-	if (member['subscribed']==True):
-		subscribed_emails.append(member['email'])
+    if (member['subscribed']==True):
+        subscribed_emails.append(member['email'])
+
+print(subscribed_emails)
 
 # emails_list = db.members.find_one({},{"email":1})
 # print(emails_list)
@@ -29,7 +31,7 @@ port = 465 # for SSL
 smtp_server = "smtp.gmail.com"
 
 sender_email = "rollingbeaches@gmail.com"
-# sender_password = getpass.getpass()
+sender_password = getpass.getpass()
 
 receiver_email = "sarthakkgupta@gmail.com"
 
@@ -344,8 +346,9 @@ with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         print('Incorrect password')
         # Send email here
     try:
-        # server.sendmail(sender_email, receiver_email, message.as_string())
-        print('Email sent.')
+        for subscriber in subscribed_emails:
+            server.sendmail(sender_email, subscriber, message.as_string())
+            print('Email sent to ' + subscriber + '.')
     except:
         print("Error.")
     
