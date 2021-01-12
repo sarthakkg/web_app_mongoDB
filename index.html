@@ -89,7 +89,7 @@
                 e.preventDefault();
                 fetch('/', {
                     method: 'post',
-                    body: JSON.stringify({name: nameUserInput.val(), email: emailUserInput.val(), subscribed: true}),
+                    body: JSON.stringify({name: nameUserInput.val(), email: emailUserInput.val(), date_subscribed: new Date(), subscribed: true}),
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     }

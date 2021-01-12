@@ -13,18 +13,23 @@ class Connect(object):
     def get_connection():
         return MongoClient("mongodb://m001-student:m001-mongodb-basics@sandbox-shard-00-00.70xfj.mongodb.net:27017,sandbox-shard-00-01.70xfj.mongodb.net:27017,sandbox-shard-00-02.70xfj.mongodb.net:27017/ewb-asu?replicaSet=atlas-14k7o4-shard-0&authSource=admin&ssl=true")
 
+subscribed_emails = []
+
 connection = Connect.get_connection()
-
 db = connection.ewb_asu
+collection = db.members
+for member in collection.find():
+	if (member['subscribed']==True):
+		subscribed_emails.append(member['email'])
 
-emails_list = db.members.find_one({},{"email":1})
-print(emails_list)
+# emails_list = db.members.find_one({},{"email":1})
+# print(emails_list)
 
 port = 465 # for SSL
 smtp_server = "smtp.gmail.com"
 
 sender_email = "rollingbeaches@gmail.com"
-sender_password = getpass.getpass()
+# sender_password = getpass.getpass()
 
 receiver_email = "sarthakkgupta@gmail.com"
 
