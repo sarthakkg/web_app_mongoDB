@@ -3,3 +3,4 @@ Web application to manage and store subscribers for email newsletters in Mongo D
 
 ![npm](https://img.shields.io/npm/v/npm)
 [![npm version](https://badge.fury.io/js/npm.svg)](https://badge.fury.io/js/npm)
+https://img.shields.io/badge/<body--parser>-<1.18.3>-<yellowgreen>
