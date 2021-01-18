@@ -1,5 +1,4 @@
 # web_app_mongoDB
-CRUD web application to manage and store subscribers and unsubscribers for email newsletters in Mongo DB. Send automated email to subscribers from database using Python MIMEText in HTML/CSS and plaintext from your email.
 
 [![npm version](https://badge.fury.io/js/npm.svg)](https://badge.fury.io/js/npm)
 ![body-parser](https://img.shields.io/badge/body--parser-1.18.3-yellowgreen)
@@ -8,6 +7,7 @@ CRUD web application to manage and store subscribers and unsubscribers for email
 ![path](https://img.shields.io/badge/path-1.0-ff69b4)
 
 **Great to manage your own email newsletters and subscribers in a database for free without paying an third-party email marketing company.**
+CRUD web application manages and stores subscribers and unsubscribers for email newsletters in Mongo DB. Send automated email to subscribers from database using Python MIMEText in HTML/CSS and plaintext from your email.
 
 ## Installation
 ```bash
