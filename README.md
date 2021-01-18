@@ -23,4 +23,4 @@ npm install path
 ## Usage
 Sets up a CRUD (create, read, update, delete) web application in Node JS. Web application allows users to fill in their contact information (name, email, status) to subscribe to email newsletters. User info is then updated in Mongo Database Atlas.
 
-Python3 script sends email to all subscibed users from database. HTML/CSS is embedded within 
+Python3 script sends email to all subscibed users from database. HTML/CSS is embedded within Python script.
