@@ -5,3 +5,4 @@ Web application to manage and store subscribers for email newsletters in Mongo D
 ![body-parser](https://img.shields.io/badge/body--parser-1.18.3-yellowgreen)
 ![express](https://img.shields.io/badge/express-4.16.4-blue)
 ![mongoDB](https://img.shields.io/badge/mongoDB-4.2-green)
+![path](https://img.shields.io/badge/path-1.0-ff69b4)
