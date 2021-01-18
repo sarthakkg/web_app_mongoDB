@@ -17,6 +17,7 @@ npm install body-parser
 npm install express
 npm install mongodb
 npm install path
+```
 
 ## Usage
 Sets up a CRUD (create, read, update, delete) web application in Node JS. Web application allows users to fill in their contact information (name, email, status) to subscribe to email newsletters. User info is then updated in Mongo Database Atlas.
