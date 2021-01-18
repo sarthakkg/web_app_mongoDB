@@ -7,7 +7,7 @@ CRUD web application to manage and store subscribers and unsubscribers for email
 ![mongoDB](https://img.shields.io/badge/mongoDB-4.2-green)
 ![path](https://img.shields.io/badge/path-1.0-ff69b4)
 
-** Great to manage your own email newsletters and subscribers in a database for free without paying an third-party email marketing company.**
+**Great to manage your own email newsletters and subscribers in a database for free without paying an third-party email marketing company.**
 
 ## Installation
 ```bash
