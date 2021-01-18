@@ -7,6 +7,7 @@
 ![path](https://img.shields.io/badge/path-1.0-ff69b4)
 
 **Great to manage your own email newsletters and subscribers in a database for free without paying an third-party email marketing company.**
+
 CRUD web application manages and stores subscribers and unsubscribers for email newsletters in Mongo DB. Send automated email to subscribers from database using Python MIMEText in HTML/CSS and plaintext from your email.
 
 ## Installation
