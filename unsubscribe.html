@@ -1,22 +1,103 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+    <title>EWB Newsletter Signup!</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8" style="background-color:mediumseagreen; margin-top: 30px;">
+                <h1>EWB-ASU Newsletter Unsubscribe</h1>
+                <form id="form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emailUserInput" placeholder="email" required>
+                        </br>
+                        </br>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            <h1 style="visibility: hidden; color:blue" id="completed">
+                You have been unsubscribed.
+                If you would like to sign up again, please go to ewbasu.org.
+            </h1>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            const display = $("#display");
+            const form = $("#form");
+            const emailUserInput = $("#emailUserInput");
+
+            const resetEmailInput = () => {
+                emailUserInput.val('');
+            }
+
+            form.submit((e) => {
+                e.preventDefault();
+                  
+                fetch(`/${todo._id}`,{
+                        method: "put",
+                        headers: {
+                            "Content-Type" : "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify({todo: todoUserInput.val()})
+                    }).then((response)=>{
+                        return response.json();
+                    }).then((data)=>{
+                        if (data.ok == 1) {
+                            let todoIndex = $(`#${todoID}`);
+                            todoIndex.html(data.value.todo);
+                            resetTodosInput();
+                        }
+                    })
+
+                fetch('/', {
+                    method: 'post',
+                    body: JSON.stringify({ name: nameUserInput.val(), email: emailUserInput.val(), team: teamUserSelect, date_subscribed: new Date(), subscribed: true }),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    }
+                }).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    resetNameInput();
+                    resetEmailInput();
+                    document.getElementById('solar').checked = false
+                    document.getElementById('irrigation').checked = false
+                    document.getElementById('kenya').checked = false
+                    document.getElementById('mountainBike').checked = false
+                    // show completion text
+                    document.getElementById("completed").style.visibility = "visible";
+                });
+            })
+        });
+    </script>
+</body>
+
 </html>
