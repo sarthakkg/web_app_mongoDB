@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const dbname = "ewb_asu";
-const url = "mongodb+srv://" + mongo.username + ":" + mongo.password + "@sandbox.70xfj.mongodb.net/" + mongo.dbName + "?retryWrites=true&w=majority";
+const url = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.70xfj.mongodb.net/ewb-asu?retryWrites=true&w=majority";
 const mongoOptions = {
     useNewUrlParser:true,
     useUnifiedTopology: true // added this
